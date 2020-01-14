@@ -51,9 +51,7 @@ function TempDevice (){
     </Devices>
     }  
       </>
-      )
-      
-      
+      ) 
     }
   
 

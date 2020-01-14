@@ -221,6 +221,7 @@ const CardTemp = props => {
                 </ResponsiveContainer>               
             </CardTempGraph>
             
+            
             {/* <HoverCard
                 className={visible ? 'activehovercard': 'hiddenhovercard'} 
                 >
