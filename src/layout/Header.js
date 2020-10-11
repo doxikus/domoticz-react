@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
+import { ThemeSwitcher } from '../styling/theme/themeSwitcher';
 
 const Header = () => {
     return (
         <HeaderWrapper>
             <h1>Header</h1>
+            <ThemeSwitcher />
         </HeaderWrapper>
       
     );      

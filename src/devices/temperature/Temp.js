@@ -8,7 +8,7 @@ import SplashScreen from '../../components/ui/Splash';
 function TempDevice (){
   const {data, isLoading, error} = FetchTemp()
 
-  console.log(data)
+  // console.log(data)
 
   if (error) {
     return <p style={{ color: 'red' }}>{error.message}</p>
