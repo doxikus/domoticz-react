@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
-import CardImageTemp from './ImagePlaceholder'
+// import CardImageTemp from './ImagePlaceholder'
 import {
     LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
   } from 'recharts';
@@ -8,6 +8,86 @@ import {
 //   import {
 //     AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 //   } from 'recharts';
+
+
+
+const CardTemp = props => {
+    const [visible, setVisible] = useState(false);
+    function hideMe() {
+    setVisible(!visible);
+    }
+    return(                
+        <CardWrapp>
+          <CardImage>  
+          <DeviceTitle>{props.title}</DeviceTitle> 
+          <Time><span>{props.timeupdate}</span></Time>         
+            {/* <CardImageTemp /> */}            
+            <CardDataTemp> 
+            <i className="wi wi-thermometer"></i>           
+                {props.temp} ºC                 
+            </CardDataTemp>  
+            <CardIcon>
+            { props.templevel >= 35
+                ? <i className="wi wi-hot"></i>            
+                : ( props.templevel >= 18
+                    ? <i className="wi wi-day-sunny"></i>            
+                    : ( props.templevel > 5
+                    ? <i className="wi wi-day-haze"></i> 
+                    : ( props.templevel < 5
+                    ? <i className="wi wi-snowflake-cold"></i>
+                    : 
+                    null                                
+                    )
+                )
+                )
+                }
+            
+            </CardIcon>
+            {props.hum ? 
+            <CardDataHum>
+             <i className="wi wi-humidity"></i>   {props.hum} % - {props.humstatus}
+            </CardDataHum>            
+            : 
+            null
+            }  
+            {props.bar ? 
+            <CardDataBar>
+            <i className="wi wi-barometer"></i>{props.bar} hPa - {props.barstatus}
+            </CardDataBar>            
+            : 
+            null
+            }    
+ 
+            </CardImage>
+            <CardTempGraph> 
+            <GraphTitle><span>{props.graphtitle}</span></GraphTitle>
+                <ResponsiveContainer width="100%" height={100}>                    
+                <LineChart data={props.graph}>
+                <Line type="monotone" dataKey="te" stroke="#8793A4" strokeWidth={2} activeDot={{ r: 2 }}/>                 
+                <Line type="monotone" dataKey="hu" stroke="#111111" strokeWidth={2} />
+                <Line type="monotone" dataKey="ba" stroke="#A9B4C5" strokeWidth={2} />                 
+                <Tooltip />
+                {/* <Legend /> */}
+                </LineChart>                
+                </ResponsiveContainer>               
+            </CardTempGraph>
+            
+            
+            <HoverCard
+                className={visible ? 'activehovercard': 'hiddenhovercard'} 
+                >
+              Ovo je div koji će pokazati mnogo toga
+              <Link to={`/temperature/details/${props.detailurl}`}>{props.title} test</Link>
+              <button name="test" className="button bottom-corner" onClick={hideMe}>Close</button>
+            </HoverCard>
+          
+          <button name="test" className="button bottom-corner" onClick={hideMe}>Open</button>
+          </CardWrapp> 
+      
+    );
+    
+};
+export default CardTemp;
 
 const CardWrapp = styled.div`
     width:100%;    
@@ -158,85 +238,6 @@ const HoverCard = styled.div`
         width:80%;        
     }
 `;
-
-const CardTemp = props => {
-
-    const [visible, setVisible] = useState(false);
-    function hideMe() {
-    setVisible(!visible);
-    }
-    return(                
-        <CardWrapp>
-          <CardImage>  
-          <DeviceTitle>{props.title}</DeviceTitle> 
-          <Time><span>{props.timeupdate}</span></Time>         
-            {/* <CardImageTemp /> */}            
-            <CardDataTemp> 
-            <i className="wi wi-thermometer"></i>           
-                {props.temp} ºC                 
-            </CardDataTemp>  
-            <CardIcon>
-            { props.templevel >= 35
-                ? <i className="wi wi-hot"></i>            
-                : ( props.templevel >= 18
-                    ? <i className="wi wi-day-sunny"></i>            
-                    : ( props.templevel > 5
-                    ? <i className="wi wi-day-haze"></i> 
-                    : ( props.templevel < 5
-                    ? <i className="wi wi-snowflake-cold"></i>
-                    : 
-                    null                                
-                    )
-                )
-                )
-                }
-            
-            </CardIcon>
-            {props.hum ? 
-            <CardDataHum>
-             <i className="wi wi-humidity"></i>   {props.hum} % - {props.humstatus}
-            </CardDataHum>            
-            : 
-            null
-            }  
-            {props.bar ? 
-            <CardDataBar>
-            <i className="wi wi-barometer"></i>{props.bar} hPa - {props.barstatus}
-            </CardDataBar>            
-            : 
-            null
-            }    
- 
-            </CardImage>
-            <CardTempGraph> 
-            <GraphTitle><span>{props.graphtitle}</span></GraphTitle>
-                <ResponsiveContainer width="100%" height={100}>                    
-                <LineChart data={props.graph}>
-                <Line type="monotone" dataKey="te" stroke="#8793A4" strokeWidth={2} activeDot={{ r: 2 }}/>                 
-                <Line type="monotone" dataKey="hu" stroke="#111111" strokeWidth={2} />
-                <Line type="monotone" dataKey="ba" stroke="#A9B4C5" strokeWidth={2} />                 
-                <Tooltip />
-                {/* <Legend /> */}
-                </LineChart>                
-                </ResponsiveContainer>               
-            </CardTempGraph>
-            
-            
-            <HoverCard
-                className={visible ? 'activehovercard': 'hiddenhovercard'} 
-                >
-              Ovo je div koji će pokazati mnogo toga
-              <Link to={`/details/${props.detailurl}`}>{props.title} test</Link>
-              <button name="test" className="button bottom-corner" onClick={hideMe}>Close</button>
-            </HoverCard>
-          
-          <button name="test" className="button bottom-corner" onClick={hideMe}>Open</button>
-          </CardWrapp> 
-      
-    );
-    
-};
-export default CardTemp;
 
 
  

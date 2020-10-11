@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import CardTemp from '../components/ui/Card';
-import {DeviceItem, Devices} from '../layout';
-import FetchTemp from '../api/GetTemp';
-import SplashScreen from '../components/ui/Splash';
+import CardTemp from './cardTemperature';
+import {DeviceItem, Devices} from '../../layout';
+import FetchTemp from '../../api/GetTemp';
+import SplashScreen from '../../components/ui/Splash';
 
 
 function TempDevice (){
   const {data, isLoading, error} = FetchTemp()
-
-  
 
   console.log(data)
 
@@ -25,6 +23,7 @@ function TempDevice (){
         <DeviceItem key={device.idx}>
           <CardTemp 
             title={device.Name}
+            detailurl={device.idx}
             temp={device.Temp}            
             hum={device.Humidity}
             humstatus={device.HumidityStatus} 

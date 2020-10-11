@@ -1,9 +1,20 @@
 import React from 'react';
 import styled from 'styled-components'
 
-const DevicesList = styled.section`
+function Devices({ name, ...restProps }) {
+    return (
+      <DevicesList>
+      <dl {...restProps}></dl>
+      </DevicesList>
+    );      
+  }
+export default Devices;
+
+const DevicesList = styled.main`
   margin:0px;
   padding:0px;
+  flex: 1;
+
   dl{
     list-style-type:none;
     display:flex;
@@ -36,12 +47,3 @@ const DevicesList = styled.section`
     }
   }
 `;
-
-function Devices({ name, ...restProps }) {
-    return (
-      <DevicesList>
-      <dl {...restProps}></dl>
-      </DevicesList>
-    );      
-  }
-export default Devices;
