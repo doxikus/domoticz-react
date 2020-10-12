@@ -5,7 +5,7 @@ import { ThemeSwitcher } from '../styling/theme/themeSwitcher';
 const Header = () => {
     return (
         <HeaderWrapper>
-            <h1>Header</h1>
+            <h1>Domoticz</h1>
             <ThemeSwitcher />
         </HeaderWrapper>
       

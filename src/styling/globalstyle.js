@@ -9,8 +9,7 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
   body {
-    align-items: center;
-    /* background: ${({ theme }) => theme.body}; */
+    align-items: center;    
     background: ${({ theme }) => theme.body};
     color: ${({ theme }) => theme.text};
     height: 100vh;
@@ -23,5 +22,6 @@ export default createGlobalStyle`
 h1,h2,h3,h4,h5,h6{
   margin:10px 0px;
   padding:0px;
+  /* color:${({ theme }) => theme.text}; */
 }
 `;
